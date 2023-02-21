@@ -28,6 +28,27 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 async def media_receive_handler(_, m: Message):
     if Var.ALLOWED_USERS and not ((str(m.from_user.id) in Var.ALLOWED_USERS) or (m.from_user.username in Var.ALLOWED_USERS)):
         return await m.reply("You are not <b>allowed to use</b> this <a href='https://github.com/EverythingSuckz/TG-FileStreamBot'>bot</a>.", quote=True)
+    if Var.UPDATES_CHANNEL != "None":
+        try:
+            user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
+            if user.status == enums.ChatMemberStatus.BANNED:
+                await c.send_message(
+                    chat_id=m.chat.id,
+                    text="ʏᴏᴜ ᴀʀᴇ 𝙱𝙰𝙽𝙽ᴇᴅ ʙᴇᴄᴀᴜsᴇ ᴏғ ᴠɪᴏʟᴀᴛɪɴɢ ʀᴜʟᴇs🙂../**",
+                    disable_web_page_preview=True
+                )
+                return 
+        except UserNotParticipant:
+            await c.send_message(
+                chat_id=m.chat.id,
+                text="""<i>ᴊᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ..**</i>""",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton("⚡ 𝚄𝙿𝙳𝙰𝚃𝙴𝚂 ⚡", url=f"https://telegram.me/{Var.UPDATES_CHANNEL}")]
+                    ]
+                )
+            )
+            return
     log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
     file_hash = get_hash(log_msg, Var.HASH_LENGTH)
     stream_link = f"{Var.URL}{log_msg.id}/{quote_plus(get_name(m))}?hash={file_hash}"
