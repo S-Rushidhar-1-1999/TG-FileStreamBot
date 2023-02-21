@@ -3,19 +3,19 @@
 
 from pyrogram import filters
 from pyrogram.types import Message
-
+from pyrogram.errors import UserNotParticipant
 from WebStreamer.vars import Var 
 from WebStreamer.bot import StreamBot
 
 @StreamBot.on_message(filters.command(["start", "help"]) & filters.private)
-async def start(_, m: Message):
+async def start(b: bot, m: Message):
     if Var.ALLOWED_USERS and not ((str(m.from_user.id) in Var.ALLOWED_USERS) or (m.from_user.username in Var.ALLOWED_USERS)):
         return await m.reply(
             "You are not in the allowed list of users who can use me. \
             Check <a href='https://github.com/EverythingSuckz/TG-FileStreamBot#optional-vars'>this link</a> for more info.",
             disable_web_page_preview=True, quote=True
         )
-
+    usr_cmd = m.text.split("_")[-1]
     if usr_cmd == "/start":
         if Var.UPDATES_CHANNEL is not None:
             try:
