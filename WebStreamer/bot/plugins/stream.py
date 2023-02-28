@@ -69,8 +69,7 @@ async def media_receive_handler(c: Client, m: Message):
         logger.info(f"Generated link: {stream_link} for {m.from_user.first_name}")
 
         msg_text = """<b><i>Your Link Generated !</i></b>\n\n<b>📂 File Name :</b> <i>{}</i>\n\n<b>🚸 Note : LINK WON'T EXPIRE TILL I DELETE</b>"""
-
-        await log_msg.reply_text(text=f"#NewFile \n\n [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**User Id :** `{m.from_user.id}`\n**Stream Link :** {stream_link}", disable_web_page_preview=True,  quote=True)
+        await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
         await m.reply_text(
             text=msg_text.format(quote_plus(get_name(m))),
             quote=True,
