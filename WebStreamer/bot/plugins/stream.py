@@ -78,7 +78,7 @@ async def media_receive_handler(c: Client, m: Message):
                 [
                     #[InlineKeyboardButton("😎 STREAM IN PLAYERS 😎", url=f"https://anshumanpm.pythonanywhere.com/stream?url={stream_link}")],
                     [InlineKeyboardButton("📥 DOWNLOAD 📥", url=stream_link)],
-                    #[InlineKeyboardButton("🖥 STREAM 🖥", url=f"https://playvideos.pages.dev/?url={stream_link}")]
+                    [InlineKeyboardButton("🖥 STREAM 🖥", url=f"https://playvideos.pages.dev/?url={stream_link}")]
                     [InlineKeyboardButton("❤️ SOURCE CODE ❤️", url="https://github.com/EverythingSuckz/TG-FileStreamBot")]
                 ]
             )
