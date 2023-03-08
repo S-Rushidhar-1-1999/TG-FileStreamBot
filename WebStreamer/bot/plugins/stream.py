@@ -76,9 +76,8 @@ async def media_receive_handler(c: Client, m: Message):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    #[InlineKeyboardButton("😎 STREAM IN PLAYERS 😎", url=f"https://anshumanpm.pythonanywhere.com/stream?url={stream_link}")],
+                    [InlineKeyboardButton("😎 STREAM IN WEB/PLAYERS 😎", url=f"https://rushidhar1999.pythonanywhere.com/stream?url={stream_link}")],
                     [InlineKeyboardButton("📥 DOWNLOAD 📥", url=stream_link)],
-                    [InlineKeyboardButton("🖥 STREAM 🖥", url=f"https://playvideos.pages.dev/?url={stream_link}")],
                     [InlineKeyboardButton("❤️ SOURCE CODE ❤️", url="https://github.com/EverythingSuckz/TG-FileStreamBot")]
                 ]
             )
